@@ -1,0 +1,92 @@
+.main {
+    /* border: 1px solid red; */
+    font-family: var(--font-family);
+
+}
+
+.main h1 {
+    font-size: 5em;
+}
+
+.main p {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 30px 0;
+    text-transform: capitalize;
+    color: var(--Medium-Gray);
+}
+
+.main a button {
+    padding: 15px 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background: var(--Almost-Black);
+    border: none;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: var(--Almost-White);
+    font-family: var(--font-family);
+    transition: 1s;
+}
+
+.main button:hover {
+    background: transparent;
+    color: var(--Almost-Black);
+    border: 1px solid black;
+}
+
+.main .partner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.main .partner>img:not(:last-child) {
+    margin-right: 40px;
+}
+
+@media screen and (max-width:600px) {
+
+    .main {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .main h1 {
+        margin: 40px 0;
+        text-align: center;
+        font-size: 38px;
+    }
+
+    br {
+        display: none;
+    }
+
+    .main p {
+        text-align: center;
+        letter-spacing: 1px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .main .partner {
+        margin: 0;
+        width: fit-content;
+    }
+
+    .main a button {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .main .partner>img:not(:last-child) {}
+
+    .main .partner>img {
+        width: 50px;
+    }
+        .main .btn {
+            text-align: center;
+            margin: 0 0 40px;
+        }
+}

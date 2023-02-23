@@ -1,0 +1,6 @@
+.main{
+    width: fit-content;
+}
+.main>img{
+    width: 100%;
+}
