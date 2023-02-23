@@ -17,7 +17,7 @@ const Header = () => {
   const expandHandleClick = () => {
     setIsExpand(isExpand)
     console.log(isExpand)
-  }
+  };
   return (
     <div className={classes.main}>
       <img src={Logo} alt="" srcset="" />
