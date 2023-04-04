@@ -1,67 +1,90 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './header.module.css'
 import Logo from '../../../assets/images/logo.svg'
-import arrowDown from '../../../assets/images/icon-arrow-down.svg'
-import arrowUp from '../../../assets/images/icon-arrow-up.svg'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Hamburger from '../../../assets/images/icon-close-menu.svg'
 import CloseMenu from '../../../assets/images/icon-menu.svg'
-import ToDo from '../../../assets/images/icon-todo.svg'
-import Calender from '../../../assets/images/icon-calendar.svg'
-import Reminder from '../../../assets/images/icon-reminders.svg'
-import planning from '../../../assets/images/icon-planning.svg'
+import { NavItems } from '../../../constant'
 const Header = () => {
-  const [isMobile, setIsMobile] = useState(false)
-  const [expand, setExpand] = useState(false)
-  const [isExpand, setIsExpand] = useState(false)
-  const expandHandleClick = () => {
-    setIsExpand(isExpand)
-    console.log(isExpand)
-  };
+  const [active, setActive] = useState(false)
+  const [click, setClick] = useState(false)
+  const [desktopWidth, setDesktopWidth] = useState(window.innerWidth)
+  const toggler = () => {
+    setActive(!active)
+  }
+  const Choose = (idx) => {
+    if (click === idx) {
+      return (
+        setClick(null)
+      )
+    }
+    setClick(idx)
+  }
+  useEffect(() => {
+    const setScreenWidth = () => {
+      setDesktopWidth(window.innerWidth)
+    }
+    window.addEventListener('resize',setScreenWidth)
+  })
   return (
     <div className={classes.main}>
-      <img src={Logo} alt="" srcset="" />
-      <div onClick={() => setIsMobile(!isMobile)} className={classes.mobile}>
-        {isMobile ? <img src={Hamburger} alt="" /> : <img src={CloseMenu} alt="" srcset="" />}
+      <div className={classes.image}>
+        <img src={Logo} alt="" srcset="" />
       </div>
-      <div className={`${isMobile ? classes.open : classes.close} &&  ${classes.all}`} onClick={() => setIsMobile(isMobile)}>
+      <div onClick={toggler} className={classes.mobile}>
+        {active ? <img src={Hamburger} /> : <img src={CloseMenu}/>}
+      </div>
+      {
+        (active || desktopWidth > 600) &&
         <nav>
-          <Link>Features
-            <span onClick={()=>setIsExpand(!isExpand)}>
-              {isExpand ? <img src={arrowUp} alt="" srcset="" /> : <img src={arrowDown} alt="" srcset="" />}
-            </span>
-            <div className={`${isExpand ? classes.closeTab : classes.openTab} && ${classes.expand}`} onClick={expandHandleClick}>
-              <a><img src={ToDo} alt="" srcset="" />ToDo </a>
-              <a><img src={Calender} alt="" srcset="" />Calender </a>
-              <a><img src={Reminder} alt="" srcset="" />Reminders </a>
-              <a><img src={planning} alt="" srcset="" />ToDo </a>
-            </div>
-          </Link>
-          <Link>
-            Company
-            <span onClick={()=>setExpand(!expand)}>
-              {expand ? <img src={arrowUp} alt="" srcset="" /> : <img src={arrowDown} alt=""/>}
-            </span>
-            <div className={`${expand ? classes.closeTab : classes.openTab} && ${classes.expand}` } onClick={()=>setExpand(expand)}>
-              <a>History</a>
-              <a>Our team</a>
-              <a>Blog</a>
-            </div>
-          </Link>
-          <Link>Careers</Link>
-          <Link>About</Link>
+          <ul>
+            {
+              NavItems.map((items, idx) => (
+                <Details Choose={Choose} click={click} toggler={toggler} active={active} items={items} idx={idx} />
+              ))
+            }
+          </ul>
+          <ul className={classes.navMenu}>
+            <li className={classes.navList}>
+              <NavLink>
+                login
+              </NavLink>
+            </li>
+            <li className={classes.navList}>
+              <NavLink>
+                <button>
+                  register
+                </button>
+              </NavLink>
+            </li>
+          </ul>
         </nav>
-        <div className={classes.btn}>
-          <Link>Login</Link>
-          <Link>
-            <button>
-              Register
-            </button>
-          </Link>
-        </div>
-      </div>
+  }
     </div>
   )
 }
-
 export default Header
+const Details = ({ items, toggler, active, idx, click, Choose }) => {
+  return (
+    <div className={classes.all}>
+      <li className={classes.navList} onClick={() => Choose(idx)}>
+        <NavLink>
+          {items.name}
+          {click === idx ? <img src={items.image} /> : <img src={items.image2} />}
+          <div className={classes.content}>
+            <div className={classes.content}>
+              {
+                click === idx ?
+                  <div>
+                  {items.content}
+                </div>:null
+              }
+            </div>
+          </div>
+        </NavLink>
+      </li>
+
+
+    </div>
+  )
+}

@@ -1,0 +1,12 @@
+.main {
+    display: block;
+    padding: 10px 25px;
+    min-height: 100px;
+}
+
+.main a {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    /* margin: 10px 0; */
+}

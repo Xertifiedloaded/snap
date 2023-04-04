@@ -2,180 +2,112 @@
     width: 95%;
     margin: 0 auto;
     display: flex;
-    padding: 10px 0;
+    padding: 20px 0;
+    align-items: flex-start;
+    box-sizing: border-box;
     justify-content: space-between;
-    align-items: center;
 }
 
-.expand {
-    position: absolute;
-}
-.expand :last-child{
-    right: 0;
-}
-.expand img {
-    margin-right: 10px;
-}
-
-.expand a {
-    display: flex;
-    margin: 15px 0;
-    width: 100%;
-}
-
-.openTab {
-    display: none;
-}
-
-.closeTab {
-    display: block;
- position: absolute;
-right: -50px;
-background: white;
-border-radius: 10px;
-}
-
-.all {
+.main .image>img {
     width: 90%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main>img {
-    width: 5%;
 }
 
 nav {
-    width: 50%;
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
-.main nav a {
+nav ul {
+    list-style: none;
+
+}
+
+nav ul:first-child {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+nav ul:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+nav ul:last-child button {
+    padding: 13px 40px;
+    border-radius: 15px;
+    border: 1px solid black;
+    text-transform: capitalize;
+}
+
+nav ul>li {
+    list-style: none;
     position: relative;
-    text-decoration: none;
-    color: var(--Medium-Gray);
-    font-weight: 700;
 }
 
-.main nav a:not(:last-child) {
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav .navMenu {
+    display: flex;
+    align-items: center;
+}
+
+nav .navMenu>li:not(:last-child) {
     margin-right: 20px;
+}
+
+.content {
+    /* z-index: 2; */
+    position: absolute;
+    top: 10px;
+    left: 0;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+    background: "white",
 }
 
 .mobile {
     display: none;
 }
 
-.main .btn a {
-    text-decoration: none;
-    color: var(--Medium-Gray);
-    font-weight: 700;
-}
-
-.main .btn a:not(:last-child) {
-    margin-right: 30px;
-}
-
-.main .btn a button {
-    padding: 10px 23px;
-    border: 1.5px solid var(--Medium-Gray);
-    border-radius: 10px;
-    color: var(--Medium-Gray);
-    transition: 2s;
-    font-weight: 600;
-}
-
-.main .btn a button:hover {
-    background: var(--Almost-Black);
-    color: var(--Almost-White);
-}
-
 @media screen and (max-width:600px) {
-
     .mobile {
-        display: flex;
-        /* justify-content: end; */
-    }
-
-    .close {
-        display: none;
-    }
-
-    .open {
-        position: absolute;
-        display: flex;
-        background: var(--Almost-White);
-        width: 80%;
-        top: 40px;
-        right: 0;
-        height: 100vh;
-        flex-direction: column;
-        align-items: start;
-        transition: 1s linear;
-    }
-
-    .main>img {
-        width: 10%;
+        display: block;
     }
 
     nav {
-        display: flex;
+        position: absolute;
+        top: 70px;
         width: 100%;
-        flex-direction: column-reverse;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: white;
+        height: 100vh;
+        background-color: red;
+        display: block;
+        position: absolute;
     }
 
-    .main nav a {
-        margin: 15px 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    .all {
-        justify-content: start;
-    }
-
-    .main .btn {
+    nav ul:first-child {
+        display: block;
         width: 100%;
-        display: flex;
+        gap: 0;
         justify-content: center;
-        margin-top: 20px;
-        flex-direction: column;
-        align-items: center;
     }
 
-    .main .btn a {
-        margin: 10px 0;
-    }
-
-    .main .btn a button {
-        padding: 15px 100px;
-    }
-
-    .main .btn a:not(:last-child) {
-        margin-right: 0;
-    }
-
-    .main nav a span {
-        margin-left: 10px;
-    }
-
-    .expand {
-        /* display: block; */
-        position: static;
-    }
-
-    .expand img {
-        margin-right: 10px;
-    }
-
-    .expand a {
-        display: block;
-        margin: 15px 0;
-    }
-
-    .openTab {
-        display: none;
-    }
-
-    .closeTab {
+    nav ul:last-child {
+        width: 100%;
         display: block;
     }
+
+
 }
